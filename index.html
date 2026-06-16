@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple calculator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="main">
+        <textarea name="textarea" id="textarea" placeholder="type anything"></textarea>
+        
+        <div class="container">
+            <button onclick="clearScreen()" id="row1">©</button>
+            <button onclick="press('(')" id="row2">(✕)</button>
+            <button onclick="press(')')" id="row3">)</button>
+            <button onclick="press('/')" id="row4">÷</button>
+            
+            <button onclick="press('7')" class="calc-btn-pink">7</button>
+            <button onclick="press('8')" class="calc-btn-pink">8</button>
+            <button onclick="press('9')" class="calc-btn-pink">9</button>
+            <button onclick="press('*')" class="calc-btn-pink">×</button>
+            
+            <button onclick="press('4')" class="calc-btn-pink">4</button>
+            <button onclick="press('5')" class="calc-btn-pink">5</button>
+            <button onclick="press('6')" class="calc-btn-pink">6</button>
+            <button onclick="press('-')" class="calc-btn-pink">–</button>
+            
+            <button onclick="press('1')" class="calc-btn-pink">1</button>
+            <button onclick="press('2')" class="calc-btn-pink">2</button>
+            <button onclick="press('3')" class="calc-btn-pink">3</button>
+            <button onclick="press('+')" class="calc-btn-pink">+</button>
+            
+            <button onclick="press('00')" class="calc-btn-pink">00</button>
+            <button onclick="press('0')" class="calc-btn-pink">0</button>
+            <button onclick="press('.')" class="calc-btn-pink">.</button>
+            <button onclick="calculate()" class="calc-btn-pink">=</button>
+        </div>
+    </div>
+
+    <script>
+        let screen = document.getElementById('textarea');
+
+        // ১. বাটনে চাপ দিলে সংখ্যা স্ক্রিনে উঠবে
+        function press(value) {
+            screen.value += value;
+        }
+
+        // ২. © চাপলে স্ক্রিন ক্লিয়ার হবে
+        function clearScreen() {
+            screen.value = '';
+        }
+
+        // ৩. = চাপলে জাভাস্ক্রিপ্ট এক নিমেষে হিসাব (যোগ, বিয়োগ, গুণ, ভাগ) করে দেবে
+        function calculate() {
+            try {
+                screen.value = eval(screen.value);
+            } catch (error) {
+                screen.value = "Error";
+            }
+        }
+    </script>
+</body>
+</html>
